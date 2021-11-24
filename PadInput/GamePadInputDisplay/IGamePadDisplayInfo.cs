@@ -10,5 +10,10 @@ namespace PadInput.GamePadInputDisplay
     /// </summary>
     interface IGamePadDisplayInfo : IGamePadDisplayFrameInfo, IGamePadDisplayButtonsInfo
     {
+
+        /// <summary>
+        /// 現在フレームを1増やします。
+        /// </summary>
+        void IncrementFrameCount();
     }
 }

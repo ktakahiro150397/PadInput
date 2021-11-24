@@ -10,12 +10,16 @@ namespace PadInput.GamePadInputDisplay
     /// </summary>
     class GamePadDisplayInfo_Test : IGamePadDisplayInfo
     {
-
-        public GamePadDisplayInfo_Test()
+        /// <summary>
+        /// 押されているパッドの情報から、入力情報を初期化します。
+        /// </summary>
+        /// <param name="PressedButtonList">入力されているボタンのリスト。</param>
+        /// <param name="gamePadDirectionData">入力されている方向キー。</param>
+        public GamePadDisplayInfo_Test(IList<IGamePadSingleButtonData> pressedButtonList, IGamePadDirectionData gamePadDirectionData)
         {
-            elapsedFrameCount = 0;
-            gamePadSingleButtonDatas = new List<IGamePadSingleButtonData>();
-            gamePadDirectionData = 
+            elapsedFrameCount = 1;
+            gamePadSingleButtonDatas = pressedButtonList;
+            gamePadDirectionData = gamePadDirectionData;
         }
 
         private int elapsedFrameCount;
@@ -28,5 +32,9 @@ namespace PadInput.GamePadInputDisplay
 
         public IGamePadDirectionData Direction => throw new NotImplementedException();
 
+        public void IncrementFrameCount()
+        {
+            elapsedFrameCount++;
+        }
     }
 }
