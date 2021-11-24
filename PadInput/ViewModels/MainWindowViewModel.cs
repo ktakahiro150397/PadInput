@@ -14,12 +14,17 @@ namespace PadInput.ViewModels
         public MainWindowViewModel()
         {
             gamePadInput = new GamepadInput();
+
+            InputHistoryStrList.Add("test");
+            InputHistoryStrList.Add("test2");
+            InputHistoryStrList.Add("test3");
         }
 
         private uint frameCounter;
         private string structureInputInfoCurrentFrame;
         private string structureInputInfoPreviousFrame;
         private string inputHistory;
+        private List<string> inputHistoryList;
         private IGamePadInput gamePadInput;
 
         /// <summary>
@@ -99,7 +104,24 @@ namespace PadInput.ViewModels
             }
         }
 
-        
+        public List<string> InputHistoryStrList
+        {
+            get
+            {
+                if (inputHistoryList == null)
+                {
+                    inputHistoryList = new List<string>();
+                }
+                return inputHistoryList;
+            }
+            set
+            {
+                inputHistoryList = value;
+                OnPropertyChanged(nameof(InputHistoryStrList));
+            }
+        }
+
+
         #endregion
 
         #region "1フレームごとに呼び出されるメソッド"
@@ -114,12 +136,29 @@ namespace PadInput.ViewModels
             //パッドの入力を取得
             gamePadInput.GetPadInput(JoyStickIDs.JOYSTICKID1);
 
+
+
+
+
+
             //入力情報を表示(生の構造体)
             StructureInputInfoStrPreviousFrame = gamePadInput.GetStructureInfoPreviousFrame();
             StructureInputInfoStrCurrentFrame = gamePadInput.GetStructureInfoCurrentFrame();
 
             //入力情報を反映
-            InputHistoryStr = gamePadInput.GetInputInfo() + InputHistoryStr;
+            //InputHistoryStr = gamePadInput.GetInputInfo() + InputHistoryStr
+
+
+            var copy = new List<string>(InputHistoryStrList);
+
+            if (gamePadInput.IsInputChangeFromPreviousFrame)
+            {
+                //入力に変化がある場合は表示内容を更新
+                copy.Insert(0, gamePadInput.GetInputInfo());
+                InputHistoryStrList = copy;
+            }
+            //copy.Add(gamePadInput.GetInputInfo());
+            //OnPropertyChanged(nameof(InputHistoryStrList));
 
         }
 

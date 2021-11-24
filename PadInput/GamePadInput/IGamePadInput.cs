@@ -40,6 +40,10 @@ namespace PadInput.GamePadInput
         /// <returns></returns>
         public string GetStructureInfoPreviousFrame();
 
+        /// <summary>
+        /// 前フレームから入力に変化がある場合はTrue。
+        /// </summary>
+        public bool IsInputChangeFromPreviousFrame { get;}
 
     }
 }

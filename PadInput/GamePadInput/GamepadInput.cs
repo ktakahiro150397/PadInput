@@ -38,13 +38,7 @@ namespace PadInput.GamePadInput
         /// <summary>
         /// 入力情報取得後、前フレームとこのフレームの入力情報が変化している場合True。
         /// </summary>
-        private bool IsInputChangeFromPreviousFrame
-        {
-            get
-            {
-                return joyInfo != prevFrameJoyInfo;
-            }
-        }
+        bool IGamePadInput.IsInputChangeFromPreviousFrame => joyInfo != prevFrameJoyInfo;
 
         private Dictionary<GamePadPOVDirection, string> GamePadPOVDirectionStr;
 
@@ -117,7 +111,7 @@ namespace PadInput.GamePadInput
 
             var buttonStr = string.Join(" ", pushedButtons);
 
-            return $"XXX F / Changed:{IsInputChangeFromPreviousFrame} / {GamePadPOVDirectionStr[currentDir]} / {joyInfo.dwButtonNumber} buttons / {buttonStr} " + Environment.NewLine;
+            return $"XXX F / Changed:{ joyInfo != prevFrameJoyInfo } / {GamePadPOVDirectionStr[currentDir]} / {joyInfo.dwButtonNumber} buttons / {buttonStr} " + Environment.NewLine;
 
         }
 
