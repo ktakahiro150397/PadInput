@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
+using System.Windows.Media.Imaging;
 using PadInput.GamePadInputDisplay.Interface;
 using PadInput.Model;
 
@@ -23,6 +24,9 @@ namespace PadInput.GamePadInputDisplay
             elapsedFrameCount = 1;
             PressedButtonList = pressedButtonList;
             Direction = gamePadDirectionData;
+
+            PressedButtonBitMap = new BitmapImage(new Uri(@"C:\Users\koike.LOGIC\Pictures\\100x200.png"));
+            PressedButtonBitMap.Freeze();
         }
 
         private int elapsedFrameCount;
@@ -35,9 +39,11 @@ namespace PadInput.GamePadInputDisplay
             }
         }
 
-        public IList<IGamePadSingleButtonData> PressedButtonList { get; }
+        public IList<IGamePadSingleButtonData> PressedButtonList { get; set; }
 
         public IGamePadDirectionData Direction {get;}
+
+        public BitmapSource PressedButtonBitMap { get; set; }
 
         public void IncrementFrameCount()
         {

@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
 
 namespace PadInput.ViewModels
 {
@@ -169,11 +170,12 @@ namespace PadInput.ViewModels
             {
                 var copy = new List<IGamePadDisplayInfo>(displayInfo);
 
-                copy.Add(new GamePadDisplayInfo_Test(
+                var add = new GamePadDisplayInfo_Test(
                     gamePadInput.GetPushedButtonsFromCurrentState(),
                     gamePadInput.GetPOVDirectionFromCurrentState()
-                ));
-
+                );
+                copy.Add(add);
+            
                 displayInfo = copy;
 
                 //入力に変化がある場合は表示内容を更新

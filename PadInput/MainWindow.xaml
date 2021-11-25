@@ -31,6 +31,7 @@
                     <StackPanel>
                         <TextBlock Text="{Binding ElapsedFrameCount}">
                         </TextBlock>
+                        <Image Source="{Binding PressedButtonBitMap}" ></Image>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
