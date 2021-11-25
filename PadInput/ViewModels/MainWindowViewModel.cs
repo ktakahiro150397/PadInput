@@ -1,4 +1,6 @@
 ﻿using PadInput.GamePadInput;
+using PadInput.GamePadInputDisplay;
+using PadInput.GamePadInputDisplay.Interface;
 using PadInput.Win32Api;
 using System;
 using System.Collections.Generic;
@@ -13,7 +15,12 @@ namespace PadInput.ViewModels
 
         public MainWindowViewModel()
         {
-            gamePadInput = new GamepadInput();
+
+            //テスト用モッククラス
+            gamePadInput = new GamePadInput_Test();
+            //gamePadInput = new GamepadInput();
+
+            displayInfo = new List<IGamePadDisplayInfo>();
 
             InputHistoryStrList.Add("test");
             InputHistoryStrList.Add("test2");
@@ -26,6 +33,7 @@ namespace PadInput.ViewModels
         private string inputHistory;
         private List<string> inputHistoryList;
         private IGamePadInput gamePadInput;
+        private IList<IGamePadDisplayInfo> displayInfo;
 
         /// <summary>
         /// 経過したフレーム数の累計数。
@@ -121,6 +129,19 @@ namespace PadInput.ViewModels
             }
         }
 
+        public IList<IGamePadDisplayInfo> GamePadDisplayInfos
+        {
+            get
+            {
+                return displayInfo;
+            }
+            set
+            {
+                displayInfo = value;
+                OnPropertyChanged(nameof(GamePadDisplayInfos));
+            }
+        }
+
 
         #endregion
 
@@ -136,11 +157,6 @@ namespace PadInput.ViewModels
             //パッドの入力を取得
             gamePadInput.GetPadInput(JoyStickIDs.JOYSTICKID1);
 
-
-
-
-
-
             //入力情報を表示(生の構造体)
             StructureInputInfoStrPreviousFrame = gamePadInput.GetStructureInfoPreviousFrame();
             StructureInputInfoStrCurrentFrame = gamePadInput.GetStructureInfoCurrentFrame();
@@ -149,16 +165,32 @@ namespace PadInput.ViewModels
             //InputHistoryStr = gamePadInput.GetInputInfo() + InputHistoryStr
 
 
-            var copy = new List<string>(InputHistoryStrList);
-
             if (gamePadInput.IsInputChangeFromPreviousFrame)
             {
+                var copy = new List<IGamePadDisplayInfo>(displayInfo);
+
+                copy.Add(new GamePadDisplayInfo_Test(
+                    gamePadInput.GetPushedButtonsFromCurrentState(),
+                    gamePadInput.GetPOVDirectionFromCurrentState()
+                ));
+
+                displayInfo = copy;
+
                 //入力に変化がある場合は表示内容を更新
-                copy.Insert(0, gamePadInput.GetInputInfo());
-                InputHistoryStrList = copy;
+                //copy.Insert(0, gamePadInput.GetInputInfo());
+                //InputHistoryStrList = copy;
             }
-            //copy.Add(gamePadInput.GetInputInfo());
-            //OnPropertyChanged(nameof(InputHistoryStrList));
+            else
+            {
+                var first = displayInfo.LastOrDefault();
+                if (first != null)
+                {
+                    first.IncrementFrameCount();
+                    OnPropertyChanged(nameof(GamePadDisplayInfos));
+                }
+
+
+            }
 
         }
 

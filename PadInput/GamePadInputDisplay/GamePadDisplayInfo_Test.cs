@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 using PadInput.GamePadInputDisplay.Interface;
+using PadInput.Model;
 
 namespace PadInput.GamePadInputDisplay
 {
@@ -9,7 +11,7 @@ namespace PadInput.GamePadInputDisplay
     /// <summary>
     /// 【表示テスト用】ゲームパッド入力情報を持つクラス。
     /// </summary>
-    class GamePadDisplayInfo_Test : IGamePadDisplayInfo
+    class GamePadDisplayInfo_Test : NotifyPropertyChangedModel,IGamePadDisplayInfo
     {
         /// <summary>
         /// 押されているパッドの情報から、入力情報を初期化します。
@@ -24,8 +26,14 @@ namespace PadInput.GamePadInputDisplay
         }
 
         private int elapsedFrameCount;
-
-        public int ElapsedFrameCount => elapsedFrameCount;
+        
+        public int ElapsedFrameCount
+        {
+            get
+            {
+                return elapsedFrameCount;
+            }
+        }
 
         public IList<IGamePadSingleButtonData> PressedButtonList { get; }
 
@@ -34,7 +42,7 @@ namespace PadInput.GamePadInputDisplay
         public void IncrementFrameCount()
         {
             elapsedFrameCount++;
-
+            OnPropertyChanged(nameof(ElapsedFrameCount));
         }
 
 

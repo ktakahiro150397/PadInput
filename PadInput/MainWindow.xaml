@@ -25,11 +25,11 @@
         <TextBlock Grid.Row="2" Grid.Column="0" Text="{Binding StructureInputInfoStrPreviousFrame}" ></TextBlock>
 
         <!--<TextBox Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" Text="{Binding InputHistoryStr}"></TextBox>-->
-        <ListBox Grid.Column="1" Grid.RowSpan="3" ItemsSource="{Binding InputHistoryStrList}">
+        <ListBox Grid.Column="1" Grid.RowSpan="3" ItemsSource="{Binding GamePadDisplayInfos}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
-                        <TextBlock Text="{Binding}">
+                        <TextBlock Text="{Binding ElapsedFrameCount}">
                         </TextBlock>
                     </StackPanel>
                 </DataTemplate>

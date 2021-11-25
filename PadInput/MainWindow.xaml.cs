@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace PadInput
 {
@@ -24,7 +25,8 @@ namespace PadInput
     {
         MainWindowViewModel _vm = null;
 
-        Timer loopTimer;
+        //DispatcherTimer loopTimer;
+        System.Timers.Timer loopTimer;
 
         private const int frameCount = 60;
 
@@ -32,9 +34,16 @@ namespace PadInput
         {
             InitializeComponent();
 
-            loopTimer = new Timer(1.0 / frameCount);
-            loopTimer.Elapsed += Timer_loop;
+            //loopTimer = new DispatcherTimer();
+            //loopTimer.Interval = new TimeSpan(0, 0, 0, 0, (int)(1000d / frameCount));
+            //loopTimer.Tick += Timer_loop;
+            //loopTimer.Start();
+
+            loopTimer = new System.Timers.Timer(1000d / frameCount);
+            loopTimer.Elapsed += (s, e) => Timer_loop(s, e);
             loopTimer.Start();
+
+            //CompositionTarget.Rendering += (_1, _2) => Timer_loop(_1,_2);
 
             // ウィンドウをマウスのドラッグで移動できるようにする
             this.MouseLeftButtonDown += (sender, e) => { this.DragMove(); };
@@ -54,7 +63,7 @@ namespace PadInput
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void Timer_loop(object sender, ElapsedEventArgs e)
+        protected void Timer_loop(object sender, EventArgs e)
         {
 
             _vm.Timer_loop();

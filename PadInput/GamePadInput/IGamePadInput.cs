@@ -1,4 +1,5 @@
-﻿using PadInput.Win32Api;
+﻿using PadInput.GamePadInputDisplay.Interface;
+using PadInput.Win32Api;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,6 +40,18 @@ namespace PadInput.GamePadInput
         /// </summary>
         /// <returns></returns>
         public string GetStructureInfoPreviousFrame();
+
+        /// <summary>
+        /// インスタンスに設定されている方向キー入力の方向を返します。
+        /// </summary>
+        /// <returns></returns>
+        public IGamePadDirectionData GetPOVDirectionFromCurrentState();
+
+        /// <summary>
+        /// インスタンスに設定されているボタン入力のリストを返します。
+        /// </summary>
+        /// <returns></returns>
+        public IList<IGamePadSingleButtonData> GetPushedButtonsFromCurrentState();
 
         /// <summary>
         /// 前フレームから入力に変化がある場合はTrue。

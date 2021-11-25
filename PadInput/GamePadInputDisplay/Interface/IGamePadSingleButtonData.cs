@@ -9,7 +9,7 @@ namespace PadInput.GamePadInputDisplay.Interface
     /// <summary>
     /// 単一のボタン情報を表すインターフェース。
     /// </summary>
-    interface IGamePadSingleButtonData
+    public interface IGamePadSingleButtonData
     {
 
         /// <summary>
@@ -27,7 +27,7 @@ namespace PadInput.GamePadInputDisplay.Interface
     /// <summary>
     /// 方向キー入力の情報を表すインターフェース。
     /// </summary>
-    interface IGamePadDirectionData
+    public interface IGamePadDirectionData
     {
 
         GamePadPOVDirection Direction { get; }
