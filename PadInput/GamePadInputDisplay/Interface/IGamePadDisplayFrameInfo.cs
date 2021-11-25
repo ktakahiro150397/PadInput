@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace PadInput.GamePadInputDisplay
+namespace PadInput.GamePadInputDisplay.Interface
 {
 
     /// <summary>

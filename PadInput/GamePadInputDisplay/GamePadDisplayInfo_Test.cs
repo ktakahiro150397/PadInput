@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using PadInput.GamePadInputDisplay.Interface;
 
 namespace PadInput.GamePadInputDisplay
 {
@@ -18,23 +19,26 @@ namespace PadInput.GamePadInputDisplay
         public GamePadDisplayInfo_Test(IList<IGamePadSingleButtonData> pressedButtonList, IGamePadDirectionData gamePadDirectionData)
         {
             elapsedFrameCount = 1;
-            gamePadSingleButtonDatas = pressedButtonList;
-            gamePadDirectionData = gamePadDirectionData;
+            PressedButtonList = pressedButtonList;
+            Direction = gamePadDirectionData;
         }
 
         private int elapsedFrameCount;
-        private IList<IGamePadSingleButtonData> gamePadSingleButtonDatas;
-        private IGamePadDirectionData gamePadDirectionData;
 
-        public int ElapsedFrameCount => throw new NotImplementedException();
+        public int ElapsedFrameCount => elapsedFrameCount;
 
-        public IList<IGamePadSingleButtonData> PressedButtonList => throw new NotImplementedException();
+        public IList<IGamePadSingleButtonData> PressedButtonList { get; }
 
-        public IGamePadDirectionData Direction => throw new NotImplementedException();
+        public IGamePadDirectionData Direction {get;}
 
         public void IncrementFrameCount()
         {
             elapsedFrameCount++;
+
         }
+
+
+        
+
     }
 }

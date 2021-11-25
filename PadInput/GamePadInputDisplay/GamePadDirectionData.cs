@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using PadInput.GamePadInputDisplay.Interface;
 
 namespace PadInput.GamePadInputDisplay
 {
@@ -11,6 +12,16 @@ namespace PadInput.GamePadInputDisplay
     /// </summary>
     class GamePadDirectionData : IGamePadDirectionData
     {
-        public GamePadPOVDirection Direction => throw new NotImplementedException();
+
+        /// <summary>
+        /// 入力方向を指定して初期化します。
+        /// </summary>
+        /// <param name="gamePadPOVDirection"></param>
+        public GamePadDirectionData(GamePadPOVDirection gamePadPOVDirection)
+        {
+            Direction = gamePadPOVDirection;
+        }
+
+        public GamePadPOVDirection Direction { get; }
     }
 }

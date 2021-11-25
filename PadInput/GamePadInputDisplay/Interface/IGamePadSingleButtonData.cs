@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace PadInput.GamePadInputDisplay
+namespace PadInput.GamePadInputDisplay.Interface
 {
 
     /// <summary>
@@ -16,6 +16,11 @@ namespace PadInput.GamePadInputDisplay
         /// ボタン。
         /// </summary>
         GamePadButtons Button { get; }
+
+        /// <summary>
+        /// このボタンを表す文字列。
+        /// </summary>
+        string ButtonString { get; }
 
     }
 
