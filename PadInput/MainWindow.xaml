@@ -25,17 +25,43 @@
         <TextBlock Grid.Row="2" Grid.Column="0" Text="{Binding StructureInputInfoStrPreviousFrame}" ></TextBlock>
 
         <!--<TextBox Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" Text="{Binding InputHistoryStr}"></TextBox>-->
-        <ListBox Grid.Column="1" Grid.RowSpan="3" ItemsSource="{Binding GamePadDisplayInfos}">
-            <ListBox.ItemTemplate>
+
+        <ItemsControl Grid.Column="1" Grid.RowSpan="3" ItemsSource="{Binding GamePadDisplayInfos}">
+
+            <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel>
-                        <TextBlock Text="{Binding ElapsedFrameCount}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="BorderThickness" Value="1,1,1,1" ></Setter>
+                                <Setter Property="BorderBrush" Value="Black" ></Setter>
+                            </Style>
+                        </Grid.Resources>
+                        <Border Grid.Column="0" Grid.Row="0"></Border>
+                        <Border Grid.Column="1" Grid.Row="0"></Border>
+                        <Border Grid.Column="2" Grid.Row="0"></Border>
+
+                        <TextBlock Text="{Binding ElapsedFrameCount}" Grid.Column="0">
                         </TextBlock>
-                        <Image Source="{Binding DataContext.GamePadBaseImage, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"></Image>
-                   </StackPanel>
+
+                        <TextBlock Text="Direction_Display" Grid.Column="1" ></TextBlock>
+
+                        <Image Source="{Binding DataContext.GamePadBaseImage, RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type ItemsControl}}}"
+                               Grid.Column="2">
+                        </Image>
+                    </Grid>
                 </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-        
+            </ItemsControl.ItemTemplate>
+            <ItemsControl.ItemContainerStyle>
+                <Style TargetType="{x:Type ContentPresenter}">
+                    <Setter Property="Margin" Value="5,5,5,5"></Setter>
+                </Style>
+            </ItemsControl.ItemContainerStyle>
+        </ItemsControl>
     </Grid>
 </Window>
