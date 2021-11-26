@@ -24,8 +24,6 @@
         <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding StructureInputInfoStrCurrentFrame}" ></TextBlock>
         <TextBlock Grid.Row="2" Grid.Column="0" Text="{Binding StructureInputInfoStrPreviousFrame}" ></TextBlock>
 
-        <!--<TextBox Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" Text="{Binding InputHistoryStr}"></TextBox>-->
-
         <ItemsControl Grid.Column="1" Grid.RowSpan="3" ItemsSource="{Binding GamePadDisplayInfos}">
 
             <ItemsControl.ItemTemplate>
@@ -51,8 +49,6 @@
 
                         <TextBlock Text="Direction_Display" Grid.Column="1" ></TextBlock>
 
-
-
                         <Image Source="{Binding 
                                         DataContext.GamePadBaseImage, 
                                         RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type ItemsControl}}}"
@@ -63,10 +59,8 @@
                                Stretch="None">
                         </Image>
 
-                        <!--オーバーレイ画像の設定-->
-                        <ItemsControl x:Name="inner" ItemsSource="{Binding 
-                            DataContext.GamePadButtonSettings, 
-                            RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type ItemsControl}}}"
+                        <!--オーバーレイ画像のバインド-->
+                        <ItemsControl x:Name="inner" ItemsSource="{Binding PressedButtonList}"
                             Grid.Row="0"
                             Grid.Column="2">
                             <ItemsControl.ItemsPanel>
@@ -77,23 +71,21 @@
 
                             <ItemsControl.ItemContainerStyle>
                                 <Style>
-                                    <Setter Property="Canvas.Background" Value="red"></Setter>
-                                    <Setter Property="Canvas.Top" Value="{Binding OverlayImagePosition.X}"></Setter>
-                                    <Setter Property="Canvas.Left" Value="{Binding OverlayImagePosition.Y}"></Setter>
+                                    <!--オーバーレイ画像を表示する座標のバインド-->
+                                    <Setter Property="Canvas.Top" Value="{Binding ButtonSetting.OverlayImagePosition.X}"></Setter>
+                                    <Setter Property="Canvas.Left" Value="{Binding ButtonSetting.OverlayImagePosition.Y}"></Setter>
                                 </Style>
                             </ItemsControl.ItemContainerStyle>
 
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <Image Source="{Binding OverlayImage}" 
+                                    <Image Source="{Binding ButtonSetting.OverlayImage}" 
                                            Visibility="Visible"
                                            StretchDirection="DownOnly">
                                     </Image>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
-
-
 
                     </Grid>
                 </DataTemplate>

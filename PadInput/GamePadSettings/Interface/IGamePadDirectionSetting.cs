@@ -10,7 +10,7 @@ namespace PadInput.GamePadSettings.Interface
     /// <summary>
     /// 方向キーの設定情報を表すインターフェース。
     /// </summary>
-    interface IGamePadDirectionSetting
+    public interface IGamePadDirectionSetting
     {
         /// <summary>
         /// この設定を表すボタン。

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Drawing;
 using System.Windows.Media.Imaging;
+using PadInput.GamePadSettings.Interface;
 
 namespace PadInput.GamePadInputDisplay.Interface
 {
@@ -17,11 +18,6 @@ namespace PadInput.GamePadInputDisplay.Interface
         /// 現在押下されているボタン情報のリスト。
         /// </summary>
         IList<IGamePadSingleButtonData> PressedButtonList { get; }
-
-        /// <summary>
-        /// ボタン押下状態を表す<see cref="BitmapSource"/>の画像。
-        /// </summary>
-        BitmapSource PressedButtonBitMap { get; set; }
 
         /// <summary>
         /// 現在押下されている方向キー情報。

@@ -60,21 +60,21 @@ namespace PadInput.ViewModels
             );
             buttonSettings.Add(
                 new GamePadButtonSetting(
-                    GamePadButtons.PAD_BUTTON_0,
+                    GamePadButtons.PAD_BUTTON_1,
                     buttonImage_2,
                     new System.Windows.Vector(0, 32)
                 )
             );
             buttonSettings.Add(
                 new GamePadButtonSetting(
-                    GamePadButtons.PAD_BUTTON_0,
+                    GamePadButtons.PAD_BUTTON_2,
                     buttonImage_3,
                     new System.Windows.Vector(0, 64)
                 )
             );
             buttonSettings.Add(
                 new GamePadButtonSetting(
-                    GamePadButtons.PAD_BUTTON_0,
+                    GamePadButtons.PAD_BUTTON_3,
                     buttonImage_4,
                     new System.Windows.Vector(0, 96)
                 )
@@ -120,19 +120,14 @@ namespace PadInput.ViewModels
             }
         }
 
+        /// <summary>
+        /// ボタン入力のベース画像。
+        /// </summary>
         public ImageSource GamePadBaseImage
         {
             get
             {
                 return settings.BaseImage;
-            }
-        }
-
-        public IList<IGamePadButtonSetting> GamePadButtonSettings
-        {
-            get
-            {
-                return settings.GetGamePadButtonSettings;
             }
         }
 

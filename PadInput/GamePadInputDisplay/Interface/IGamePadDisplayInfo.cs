@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Windows;
 using System.Text;
+using PadInput.GamePadSettings.Interface;
 
 namespace PadInput.GamePadInputDisplay.Interface
 {
@@ -15,5 +17,7 @@ namespace PadInput.GamePadInputDisplay.Interface
         /// 現在フレームを1増やします。
         /// </summary>
         void IncrementFrameCount();
+
+
     }
 }
