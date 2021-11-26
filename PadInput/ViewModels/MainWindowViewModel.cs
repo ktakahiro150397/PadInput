@@ -1,12 +1,15 @@
 ﻿using PadInput.GamePadInput;
 using PadInput.GamePadInputDisplay;
 using PadInput.GamePadInputDisplay.Interface;
+using PadInput.GamePadSettings;
+using PadInput.GamePadSettings.Interface;
 using PadInput.Win32Api;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace PadInput.ViewModels
@@ -23,9 +26,40 @@ namespace PadInput.ViewModels
 
             displayInfo = new List<IGamePadDisplayInfo>();
 
-            InputHistoryStrList.Add("test");
-            InputHistoryStrList.Add("test2");
-            InputHistoryStrList.Add("test3");
+
+            //テスト用設定読み込み
+            var currentDir = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+            ImageSource baseImage = new BitmapImage(new Uri(
+                 System.IO.Path.Combine(currentDir, @"Settings\Pic\Base.png")
+             ));
+            IList<IGamePadButtonSetting> buttonSettings = new List<IGamePadButtonSetting>();
+            IList<IGamePadDirectionSetting> directionSettings = new List<IGamePadDirectionSetting>();
+
+            var buttonImage_1 = new BitmapImage(new Uri(
+                System.IO.Path.Combine(currentDir, @"Settings\Pic\A_Press.png")
+                )
+            );
+            buttonSettings.Add(
+                new GamePadButtonSetting(
+                    GamePadButtons.PAD_BUTTON_0,
+                    buttonImage_1,
+                    new System.Windows.Vector(0, 0)
+                )
+            );
+
+            var directionImage_Up = new BitmapImage(new Uri(
+                System.IO.Path.Combine(currentDir, @"Settings\Pic\Direction_Up.png")
+                )
+            );
+            directionSettings.Add(
+                new GamePadDirectionSetting(
+                    GamePadPOVDirection.Up,
+                    directionImage_Up
+                )
+            );
+
+            settings = new GamePadSettingsModel(baseImage, buttonSettings, directionSettings);
+
         }
 
         private uint frameCounter;
@@ -34,6 +68,7 @@ namespace PadInput.ViewModels
         private string inputHistory;
         private List<string> inputHistoryList;
         private IGamePadInput gamePadInput;
+        private IGamePadSettingsModel settings;
         private IList<IGamePadDisplayInfo> displayInfo;
 
         /// <summary>
@@ -49,6 +84,14 @@ namespace PadInput.ViewModels
             {
                 frameCounter = value;
                 OnPropertyChanged(nameof(FrameCounterStr));
+            }
+        }
+
+        public ImageSource GamePadBaseImage
+        {
+            get
+            {
+                return settings.BaseImage;
             }
         }
 
@@ -175,7 +218,7 @@ namespace PadInput.ViewModels
                     gamePadInput.GetPOVDirectionFromCurrentState()
                 );
                 copy.Add(add);
-            
+
                 displayInfo = copy;
 
                 //入力に変化がある場合は表示内容を更新

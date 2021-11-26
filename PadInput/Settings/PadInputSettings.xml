@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<PadInputSettings>
+	
+	<!--表示するボタンの個数。-->
+	<ButtonCount>4</ButtonCount>
+
+	<ButtonOverlaySettings>
+
+		<!--ベースイメージ。-->
+		<BaseOverlayImage>
+			./BaseImage.png
+		</BaseOverlayImage>
+		
+		<!--表示する各ボタンのイメージ。表示順に指定してください。-->
+		<ButtonOverlayImages>
+			<OverlayImage>
+				./DButtonImage.png
+			</OverlayImage>
+			<OverlayImage>
+				./AButtonImage.png
+			</OverlayImage>
+			<OverlayImage>
+				./BButtonImage.png
+			</OverlayImage>
+			<OverlayImage>
+				./CButtonImage.png
+			</OverlayImage>
+		</ButtonOverlayImages>
+		
+		<!--表示するボタンイメージの座標。
+		・表示順に指定してください。
+		・ベースイメージの左上を(0,0)として、整数で指定してください。
+		-->
+		<ButtonOverlayImagePositions>
+			<OverlayImagePosition>
+				<x>0</x>
+				<y>0</y>
+			</OverlayImagePosition>
+				<x>32</x>
+				<y>32</y>
+			<OverlayImagePosition>
+			</OverlayImagePosition>
+			<OverlayImagePosition>
+				<x>64</x>
+				<y>64</y>
+			</OverlayImagePosition>
+			<OverlayImagePosition>
+				<x>96</x>
+				<y>96</y>
+			</OverlayImagePosition>
+		</ButtonOverlayImagePositions>
+		
+	</ButtonOverlaySettings>
+
+	<!--方向キー入力時に表示するイメージ。-->
+	<POVDirectionImages>
+		<POVDirectionImage direction="Neutral">./Neutral.png</POVDirectionImage>
+		<POVDirectionImage direction="Up">./Up.png</POVDirectionImage>
+		<POVDirectionImage direction="Down">./Down.png</POVDirectionImage>
+		<POVDirectionImage direction="Left">./Left.png</POVDirectionImage>
+		<POVDirectionImage direction="Right">./Right.png</POVDirectionImage>
+		<POVDirectionImage direction="UpRight">./UpRight.png</POVDirectionImage>
+		<POVDirectionImage direction="UpLeft">./UpLeft.png</POVDirectionImage>
+		<POVDirectionImage direction="DownRight">./DownRight.png</POVDirectionImage>
+		<POVDirectionImage direction="DownLeft">./DownLeft.png</POVDirectionImage>
+	</POVDirectionImages>
+	
+</PadInputSettings>

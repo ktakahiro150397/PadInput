@@ -31,8 +31,8 @@
                     <StackPanel>
                         <TextBlock Text="{Binding ElapsedFrameCount}">
                         </TextBlock>
-                        <Image Source="{Binding PressedButtonBitMap}" ></Image>
-                    </StackPanel>
+                        <Image Source="{Binding DataContext.GamePadBaseImage, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"></Image>
+                   </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
