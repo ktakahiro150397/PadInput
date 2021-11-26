@@ -29,7 +29,7 @@ namespace PadInput.GamePadInput
         {
             get
             {
-                if (DateTime.Now.Second == 10 || DateTime.Now.Second == 40)
+                if (DateTime.Now.Second % 5 == 0)
                 {
                     if (DateTime.Now.Millisecond < 30)
                     {

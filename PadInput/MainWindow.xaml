@@ -51,9 +51,50 @@
 
                         <TextBlock Text="Direction_Display" Grid.Column="1" ></TextBlock>
 
-                        <Image Source="{Binding DataContext.GamePadBaseImage, RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type ItemsControl}}}"
-                               Grid.Column="2">
+
+
+                        <Image Source="{Binding 
+                                        DataContext.GamePadBaseImage, 
+                                        RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type ItemsControl}}}"
+                               Grid.Row="0"
+                               Grid.Column="2"
+                               Panel.ZIndex="-1"
+                               HorizontalAlignment="Left"
+                               Stretch="None">
                         </Image>
+
+                        <!--オーバーレイ画像の設定-->
+                        <ItemsControl x:Name="inner" ItemsSource="{Binding 
+                            DataContext.GamePadButtonSettings, 
+                            RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type ItemsControl}}}"
+                            Grid.Row="0"
+                            Grid.Column="2">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <Canvas HorizontalAlignment="Stretch" VerticalAlignment="Stretch"></Canvas>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+
+                            <ItemsControl.ItemContainerStyle>
+                                <Style>
+                                    <Setter Property="Canvas.Background" Value="red"></Setter>
+                                    <Setter Property="Canvas.Top" Value="{Binding OverlayImagePosition.X}"></Setter>
+                                    <Setter Property="Canvas.Left" Value="{Binding OverlayImagePosition.Y}"></Setter>
+                                </Style>
+                            </ItemsControl.ItemContainerStyle>
+
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Image Source="{Binding OverlayImage}" 
+                                           Visibility="Visible"
+                                           StretchDirection="DownOnly">
+                                    </Image>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+
+
+
                     </Grid>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>

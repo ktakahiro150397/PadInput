@@ -36,7 +36,19 @@ namespace PadInput.ViewModels
             IList<IGamePadDirectionSetting> directionSettings = new List<IGamePadDirectionSetting>();
 
             var buttonImage_1 = new BitmapImage(new Uri(
+                System.IO.Path.Combine(currentDir, @"Settings\Pic\D_Press.png")
+                )
+            );
+            var buttonImage_2 = new BitmapImage(new Uri(
                 System.IO.Path.Combine(currentDir, @"Settings\Pic\A_Press.png")
+                )
+            );
+            var buttonImage_3 = new BitmapImage(new Uri(
+                System.IO.Path.Combine(currentDir, @"Settings\Pic\B_Press.png")
+                )
+            );
+            var buttonImage_4 = new BitmapImage(new Uri(
+                System.IO.Path.Combine(currentDir, @"Settings\Pic\C_Press.png")
                 )
             );
             buttonSettings.Add(
@@ -44,6 +56,27 @@ namespace PadInput.ViewModels
                     GamePadButtons.PAD_BUTTON_0,
                     buttonImage_1,
                     new System.Windows.Vector(0, 0)
+                )
+            );
+            buttonSettings.Add(
+                new GamePadButtonSetting(
+                    GamePadButtons.PAD_BUTTON_0,
+                    buttonImage_2,
+                    new System.Windows.Vector(0, 32)
+                )
+            );
+            buttonSettings.Add(
+                new GamePadButtonSetting(
+                    GamePadButtons.PAD_BUTTON_0,
+                    buttonImage_3,
+                    new System.Windows.Vector(0, 64)
+                )
+            );
+            buttonSettings.Add(
+                new GamePadButtonSetting(
+                    GamePadButtons.PAD_BUTTON_0,
+                    buttonImage_4,
+                    new System.Windows.Vector(0, 96)
                 )
             );
 
@@ -92,6 +125,14 @@ namespace PadInput.ViewModels
             get
             {
                 return settings.BaseImage;
+            }
+        }
+
+        public IList<IGamePadButtonSetting> GamePadButtonSettings
+        {
+            get
+            {
+                return settings.GetGamePadButtonSettings;
             }
         }
 
