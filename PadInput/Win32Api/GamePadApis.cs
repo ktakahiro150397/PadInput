@@ -125,6 +125,28 @@ namespace PadInput.Win32Api
             return !(left == right);
         }
 
+        public override bool Equals(object obj)
+        {
+            if(obj == null)
+            {
+                return false;
+            }
+
+            if(obj is JOYINFOEX)
+            {
+                return this == (JOYINFOEX)obj;
+            }
+
+            return false;
+
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
+
     }
 
     /// <summary>

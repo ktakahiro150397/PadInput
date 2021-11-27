@@ -12,39 +12,58 @@ namespace PadInput.GamePadInputDisplay
     /// <summary>
     /// 単一のゲームパッドボタン入力データを表します。
     /// </summary>
-    class GamePadSingleButtonData : IGamePadSingleButtonData
+    public class GamePadSingleButtonData : IGamePadSingleButtonData
     {
 
         /// <summary>
         /// ボタンを指定して初期化します。
         /// </summary>
         /// <param name="button"></param>
-        public GamePadSingleButtonData(GamePadButtons button)
+        public GamePadSingleButtonData(GamePadButtons button, IGamePadSettingsModel settings)
         {
             Button = button;
+
+            ButtonSetting = new GamePadButtonSetting(
+                    Button,
+                    settings.GetGamePadButtonSetting(Button).OverlayImage,
+                    settings.GetGamePadButtonSetting(Button).OverlayImagePosition
+            );
+
         }
 
         public GamePadButtons Button { get; }
 
         public string ButtonString => Button.ToString();
 
-        public IGamePadButtonSetting ButtonSetting
+        public IGamePadButtonSetting ButtonSetting { get; }
+
+        public override bool Equals(object obj)
         {
-            get
+            if (obj == null)
             {
-                //テスト用設定読み込み
-                var currentDir = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
-
-                var buttonImage_1 = new BitmapImage(new Uri(
-                   System.IO.Path.Combine(currentDir, @"Settings\Pic\A_Press.png")
-                   ));
-
-                    return new GamePadButtonSetting(
-                        GamePadButtons.PAD_BUTTON_0,
-                        buttonImage_1,
-                        new System.Windows.Vector(0,32)
-                    );
+                return false;
             }
+
+            if (obj is GamePadSingleButtonData)
+            {
+                var data = (GamePadSingleButtonData)obj;
+
+                if (data.Button == Button && data.ButtonSetting.Equals(ButtonSetting))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+
         }
+        
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Button, ButtonSetting);
+        }
+
+
+
     }
 }

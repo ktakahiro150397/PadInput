@@ -13,7 +13,7 @@ namespace PadInput.GamePadSettings.Interface
     /// <summary>
     /// ゲームパッド入力の設定情報を保持する機能を提供するインターフェース。
     /// </summary>
-    interface IGamePadSettingsModel
+    public interface IGamePadSettingsModel
     {
 
         ImageSource BaseImage { get; }

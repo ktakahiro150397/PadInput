@@ -12,7 +12,7 @@ namespace PadInput.GamePadSettings
     /// <summary>
     /// 単一のゲームパッド設定を表します。
     /// </summary>
-    class GamePadButtonSetting : IGamePadButtonSetting
+    public class GamePadButtonSetting : IGamePadButtonSetting
     {
 
         /// <summary>
@@ -33,5 +33,36 @@ namespace PadInput.GamePadSettings
         public ImageSource OverlayImage { get; }
 
         public Vector OverlayImagePosition { get; }
+
+
+        public override bool Equals(object obj)
+        {
+            if(obj == null)
+            {
+                return false;
+            }
+
+            if(obj is GamePadButtonSetting)
+            {
+                GamePadButtonSetting other = (GamePadButtonSetting)obj;
+
+                if(other.Button == Button && 
+                    other.OverlayImage.ToString() == OverlayImage.ToString() &&  
+                    other.OverlayImagePosition == OverlayImagePosition)
+                {
+                    return true;
+                }
+
+            }
+
+            return false;
+
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Button, OverlayImage, OverlayImagePosition);
+        }
+
     }
 }

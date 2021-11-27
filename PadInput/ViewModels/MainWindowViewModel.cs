@@ -20,78 +20,14 @@ namespace PadInput.ViewModels
         public MainWindowViewModel()
         {
 
+            settings = new GamePadSettingsModel();
+
             //テスト用モッククラス
-            gamePadInput = new GamePadInput_Test();
-            //gamePadInput = new GamepadInput();
+            //gamePadInput = new GamePadInput_Test();
+            gamePadInput = new GamepadInput(settings);
 
             displayInfo = new List<IGamePadDisplayInfo>();
 
-
-            //テスト用設定読み込み
-            var currentDir = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
-            ImageSource baseImage = new BitmapImage(new Uri(
-                 System.IO.Path.Combine(currentDir, @"Settings\Pic\Base.png")
-             ));
-            IList<IGamePadButtonSetting> buttonSettings = new List<IGamePadButtonSetting>();
-            IList<IGamePadDirectionSetting> directionSettings = new List<IGamePadDirectionSetting>();
-
-            var buttonImage_1 = new BitmapImage(new Uri(
-                System.IO.Path.Combine(currentDir, @"Settings\Pic\D_Press.png")
-                )
-            );
-            var buttonImage_2 = new BitmapImage(new Uri(
-                System.IO.Path.Combine(currentDir, @"Settings\Pic\A_Press.png")
-                )
-            );
-            var buttonImage_3 = new BitmapImage(new Uri(
-                System.IO.Path.Combine(currentDir, @"Settings\Pic\B_Press.png")
-                )
-            );
-            var buttonImage_4 = new BitmapImage(new Uri(
-                System.IO.Path.Combine(currentDir, @"Settings\Pic\C_Press.png")
-                )
-            );
-            buttonSettings.Add(
-                new GamePadButtonSetting(
-                    GamePadButtons.PAD_BUTTON_0,
-                    buttonImage_1,
-                    new System.Windows.Vector(0, 0)
-                )
-            );
-            buttonSettings.Add(
-                new GamePadButtonSetting(
-                    GamePadButtons.PAD_BUTTON_1,
-                    buttonImage_2,
-                    new System.Windows.Vector(0, 32)
-                )
-            );
-            buttonSettings.Add(
-                new GamePadButtonSetting(
-                    GamePadButtons.PAD_BUTTON_2,
-                    buttonImage_3,
-                    new System.Windows.Vector(0, 64)
-                )
-            );
-            buttonSettings.Add(
-                new GamePadButtonSetting(
-                    GamePadButtons.PAD_BUTTON_3,
-                    buttonImage_4,
-                    new System.Windows.Vector(0, 96)
-                )
-            );
-
-            var directionImage_Up = new BitmapImage(new Uri(
-                System.IO.Path.Combine(currentDir, @"Settings\Pic\Direction_Up.png")
-                )
-            );
-            directionSettings.Add(
-                new GamePadDirectionSetting(
-                    GamePadPOVDirection.Up,
-                    directionImage_Up
-                )
-            );
-
-            settings = new GamePadSettingsModel(baseImage, buttonSettings, directionSettings);
 
         }
 
@@ -249,7 +185,7 @@ namespace PadInput.ViewModels
             {
                 var copy = new List<IGamePadDisplayInfo>(displayInfo);
 
-                var add = new GamePadDisplayInfo_Test(
+                var add = new GamePadDisplayInfo(
                     gamePadInput.GetPushedButtonsFromCurrentState(),
                     gamePadInput.GetPOVDirectionFromCurrentState()
                 );

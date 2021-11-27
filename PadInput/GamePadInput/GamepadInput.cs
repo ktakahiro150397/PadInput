@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Runtime.InteropServices;
 using PadInput.GamePadInputDisplay.Interface;
 using PadInput.GamePadInputDisplay;
+using PadInput.GamePadSettings.Interface;
 
 namespace PadInput.GamePadInput
 {
@@ -18,9 +19,11 @@ namespace PadInput.GamePadInput
     {
 
 
-        public GamepadInput()
+        public GamepadInput(IGamePadSettingsModel settings)
         {
             joyInfo = new JOYINFOEX();
+
+            this.settings = settings;
 
             GamePadPOVDirectionStr = new Dictionary<GamePadPOVDirection, string>()
             {
@@ -44,10 +47,12 @@ namespace PadInput.GamePadInput
 
         private Dictionary<GamePadPOVDirection, string> GamePadPOVDirectionStr;
 
+        private IGamePadSettingsModel settings;
+
         /// <summary>
         /// このインスタンスの入力情報を表します。
         /// </summary>
-        private JOYINFOEX joyInfo;
+        public JOYINFOEX joyInfo;
 
         /// <summary>
         /// 1フレーム前の入力情報を表します。
@@ -195,7 +200,7 @@ namespace PadInput.GamePadInput
                 if (CheckIsButtonPushed(joyInfo.dwButtons, button))
                 {
                     //このボタンは押下されている
-                    ret.Add(new GamePadSingleButtonData(button));
+                    ret.Add(new GamePadSingleButtonData(button, settings));
 ;                }
             }
 

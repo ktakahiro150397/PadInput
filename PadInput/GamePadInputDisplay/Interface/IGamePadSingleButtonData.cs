@@ -28,6 +28,7 @@ namespace PadInput.GamePadInputDisplay.Interface
         /// </summary>
         IGamePadButtonSetting ButtonSetting { get; }
 
+
 }
 
     /// <summary>

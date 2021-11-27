@@ -146,7 +146,7 @@ namespace PadInput.GamePadInput
             if (CheckIsButtonPushed(joyInfo.dwButtons, button))
             {
                 //このボタンは押下されている
-                ret.Add(new GamePadSingleButtonData(button));
+                ret.Add(new GamePadSingleButtonData(button,null));
                 ;
             }
         }
