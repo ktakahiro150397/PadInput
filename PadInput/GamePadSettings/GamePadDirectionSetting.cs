@@ -18,7 +18,7 @@ namespace PadInput.GamePadSettings
         /// </summary>
         /// <param name="direction"></param>
         /// <param name="directionImage"></param>
-        public GamePadDirectionSetting(GamePadPOVDirection direction,ImageSource directionImage)
+        public GamePadDirectionSetting(GamePadPOVDirection direction, ImageSource directionImage)
         {
             Direction = direction;
             DirectionImages = directionImage;
@@ -27,6 +27,15 @@ namespace PadInput.GamePadSettings
             {
                 DirectionImages.Freeze();
             }
+        }
+
+        public GamePadDirectionSetting(GamePadPOVDirection direction,IGamePadSettingsModel settings)
+        {
+            this.GamePadDirect
+
+
+            Direction = direction;
+            DirectionImages = settings.GetGamePadDirectionSetting(direction).DirectionImages;
         }
 
         public GamePadPOVDirection Direction { get; }

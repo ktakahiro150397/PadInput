@@ -21,7 +21,7 @@ namespace PadInput.GamePadSettings
         /// <param name="button"></param>
         /// <param name="overlayImage"></param>
         /// <param name="overlayImagePos"></param>
-        public GamePadButtonSetting(GamePadButtons button,ImageSource overlayImage,Vector overlayImagePos)
+        public GamePadButtonSetting(GamePadButtons button, ImageSource overlayImage, Vector overlayImagePos)
         {
             Button = button;
             OverlayImage = overlayImage;
@@ -32,22 +32,35 @@ namespace PadInput.GamePadSettings
 
         public ImageSource OverlayImage { get; }
 
-        public Vector OverlayImagePosition { get; }
+        public Vector? OverlayImagePosition { get; }
 
 
         public override bool Equals(object obj)
         {
-            if(obj == null)
+            if (obj == null)
             {
                 return false;
             }
 
-            if(obj is GamePadButtonSetting)
+            if (obj is GamePadButtonSetting)
             {
                 GamePadButtonSetting other = (GamePadButtonSetting)obj;
 
-                if(other.Button == Button && 
-                    other.OverlayImage.ToString() == OverlayImage.ToString() &&  
+                if (other.OverlayImage == null)
+                {
+                    if (OverlayImage == null)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+
+                }
+
+                if (other.Button == Button &&
+                    other.OverlayImage.ToString() == OverlayImage.ToString() &&
                     other.OverlayImagePosition == OverlayImagePosition)
                 {
                     return true;

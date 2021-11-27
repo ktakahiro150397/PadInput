@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using PadInput.GamePadSettings.Interface;
 using PadInput.GamePadSettings;
 
-namespace PadInputUnitTest
+namespace PadInputUnitTest.GamePadInput
 {
 
     public class GetPushedButtonsFromCurrentState_Test : TestBase

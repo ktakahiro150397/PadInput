@@ -26,7 +26,7 @@ namespace PadInput.GamePadSettings.Interface
         /// <summary>
         /// オーバーレイ表示する座標。
         /// </summary>
-        Vector OverlayImagePosition { get; }
+        Vector? OverlayImagePosition { get; }
 
 
     }

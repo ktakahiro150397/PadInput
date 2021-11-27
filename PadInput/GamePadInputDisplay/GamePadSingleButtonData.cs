@@ -6,6 +6,7 @@ using PadInput.GamePadInput;
 using PadInput.GamePadInputDisplay.Interface;
 using PadInput.GamePadSettings;
 using PadInput.GamePadSettings.Interface;
+using System.Windows;
 
 namespace PadInput.GamePadInputDisplay
 {
@@ -23,10 +24,14 @@ namespace PadInput.GamePadInputDisplay
         {
             Button = button;
 
+            var buttonSetting = settings.GetGamePadButtonSetting(Button);
+
+
+
             ButtonSetting = new GamePadButtonSetting(
                     Button,
-                    settings.GetGamePadButtonSetting(Button).OverlayImage,
-                    settings.GetGamePadButtonSetting(Button).OverlayImagePosition
+                    buttonSetting == null ? null : buttonSetting.OverlayImage,
+                    buttonSetting == null ? new Vector(0,0) : buttonSetting.OverlayImagePosition.Value
             );
 
         }
@@ -57,7 +62,7 @@ namespace PadInput.GamePadInputDisplay
             return false;
 
         }
-        
+
         public override int GetHashCode()
         {
             return HashCode.Combine(Button, ButtonSetting);
