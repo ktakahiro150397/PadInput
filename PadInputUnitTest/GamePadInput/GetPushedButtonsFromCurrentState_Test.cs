@@ -21,7 +21,8 @@ namespace PadInputUnitTest.GamePadInput
 
         public GetPushedButtonsFromCurrentState_Test(ITestOutputHelper output) : base(output)
         {
-            settings = new GamePadSettingsModel();
+            var xmlFilePath = "./Settings/PadInputSettings.xml";
+            settings = new GamePadSettingsModel(xmlFilePath);
 
             gamepadInput = new GamepadInput(settings);
         }

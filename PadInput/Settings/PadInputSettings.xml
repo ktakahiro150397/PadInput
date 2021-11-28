@@ -10,7 +10,7 @@
 		<!--表示する各ボタンのイメージとベースイメージに対する座標。-->
 		<ButtonOverlayImages>
 
-			<OverlayImage button="PAD_BUTTON_0">
+			<OverlayImage button="PAD_BUTTON_1">
 				<ImageName>Settings\Pic\D_Press.png</ImageName>
 				<OverlayImagePosition>
 					<x>0</x>
@@ -18,26 +18,26 @@
 				</OverlayImagePosition>
 			</OverlayImage>
 
-			<OverlayImage button="PAD_BUTTON_1">
+			<OverlayImage button="PAD_BUTTON_0">
 				<ImageName>Settings\Pic\A_Press.png</ImageName>
 				<OverlayImagePosition>
-					<x>32</x>
+					<x>0</x>
 					<y>32</y>
 				</OverlayImagePosition>
 			</OverlayImage>
 
-			<OverlayImage button="PAD_BUTTON_2">
+			<OverlayImage button="PAD_BUTTON_3">
 				<ImageName>Settings\Pic\B_Press.png</ImageName>
 				<OverlayImagePosition>
-					<x>64</x>
+					<x>0</x>
 					<y>64</y>
 				</OverlayImagePosition>
 			</OverlayImage>
 
-			<OverlayImage button="PAD_BUTTON_3">
+			<OverlayImage button="PAD_BUTTON_2">
 				<ImageName>Settings\Pic\C_Press.png</ImageName>
 				<OverlayImagePosition>
-					<x>96</x>
+					<x>0</x>
 					<y>96</y>
 				</OverlayImagePosition>
 			</OverlayImage>
@@ -48,7 +48,7 @@
 
 	<!--方向キー入力時に表示するイメージ。-->
 	<POVDirectionImages>
-		<POVDirectionImage direction="Neutral">Settings\Pic\Direction_N.png</POVDirectionImage>
+		<!--<POVDirectionImage direction="Neutral">Settings\Pic\Direction_N.png</POVDirectionImage>
 		<POVDirectionImage direction="Up">Settings\Pic\Direction_Up.png</POVDirectionImage>
 		<POVDirectionImage direction="Down">Settings\Pic\Direction_Down.png</POVDirectionImage>
 		<POVDirectionImage direction="Left">Settings\Pic\Direction_Left.png</POVDirectionImage>
@@ -56,7 +56,16 @@
 		<POVDirectionImage direction="UpRight">Settings\Pic\Direction_UpRight.png</POVDirectionImage>
 		<POVDirectionImage direction="UpLeft">Settings\Pic\Direction_UpLeft.png</POVDirectionImage>
 		<POVDirectionImage direction="DownRight">Settings\Pic\Direction_DownRight.png</POVDirectionImage>
-		<POVDirectionImage direction="DownLeft">Settings\Pic\Direction_DownLeft.png</POVDirectionImage>
+		<POVDirectionImage direction="DownLeft">Settings\Pic\Direction_DownLeft.png</POVDirectionImage>-->
+		<POVDirectionImage direction="Neutral">Settings\Pic\Direction_N.png</POVDirectionImage>
+		<POVDirectionImage direction="Up">Settings\Pic\Log32Up.png</POVDirectionImage>
+		<POVDirectionImage direction="Down">Settings\Pic\Log32Down.png</POVDirectionImage>
+		<POVDirectionImage direction="Left">Settings\Pic\Log32Left.png</POVDirectionImage>
+		<POVDirectionImage direction="Right">Settings\Pic\Log32Right.png</POVDirectionImage>
+		<POVDirectionImage direction="UpRight">Settings\Pic\Log32UpRight.png</POVDirectionImage>
+		<POVDirectionImage direction="UpLeft">Settings\Pic\Log32UpLeft.png</POVDirectionImage>
+		<POVDirectionImage direction="DownRight">Settings\Pic\Log32DownRight.png</POVDirectionImage>
+		<POVDirectionImage direction="DownLeft">Settings\Pic\Log32DownLeft.png</POVDirectionImage>
 	</POVDirectionImages>
 
 </PadInputSettings>

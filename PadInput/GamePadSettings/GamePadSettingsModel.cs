@@ -219,9 +219,6 @@ namespace PadInput.GamePadSettings
 
             }
 
-
-
-
         }
 
         private ImageSource GetImageSourceFromCurrentDirectory(string currentDir, string imagePath)

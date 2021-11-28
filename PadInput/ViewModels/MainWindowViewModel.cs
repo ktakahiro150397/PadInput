@@ -184,23 +184,19 @@ namespace PadInput.ViewModels
 
             if (gamePadInput.IsInputChangeFromPreviousFrame)
             {
-                var copy = new List<IGamePadDisplayInfo>(displayInfo);
+                //前フレームと入力が異なる場合に表示
+                var copy = new List<IGamePadDisplayInfo>(displayInfo).Take(10).ToList();
 
                 var add = new GamePadDisplayInfo(
                     gamePadInput.GetPushedButtonsFromCurrentState(),
                     gamePadInput.GetPOVDirectionFromCurrentState()
                 );
-                copy.Add(add);
-
+                copy.Insert(0, add);
                 displayInfo = copy;
-
-                //入力に変化がある場合は表示内容を更新
-                //copy.Insert(0, gamePadInput.GetInputInfo());
-                //InputHistoryStrList = copy;
             }
             else
             {
-                var first = displayInfo.LastOrDefault();
+                var first = displayInfo.FirstOrDefault();
                 if (first != null)
                 {
                     first.IncrementFrameCount();
