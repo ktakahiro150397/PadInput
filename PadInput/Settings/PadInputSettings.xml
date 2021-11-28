@@ -7,6 +7,27 @@
 		<BackgroundColor>Violet</BackgroundColor>
 	</InputDisplaySettings>
 
+	<!--ボタンの同時押し設定-->
+	<ButtonSimultaneouslyPushSettings>
+		<ParentButton button="PAD_BUTTON_6">
+			<ChildButton>PAD_BUTTON_0</ChildButton>
+			<ChildButton>PAD_BUTTON_3</ChildButton>
+		</ParentButton>
+		<ParentButton button="PAD_BUTTON_4">
+			<ChildButton>PAD_BUTTON_2</ChildButton>
+			<ChildButton>PAD_BUTTON_3</ChildButton>
+		</ParentButton>
+		<ParentButton button="PAD_BUTTON_10">
+			<ChildButton>PAD_BUTTON_0</ChildButton>
+			<ChildButton>PAD_BUTTON_1</ChildButton>
+		</ParentButton>
+		<ParentButton button="PAD_BUTTON_11">
+			<ChildButton>PAD_BUTTON_0</ChildButton>
+			<ChildButton>PAD_BUTTON_2</ChildButton>
+			<ChildButton>PAD_BUTTON_3</ChildButton>
+		</ParentButton>
+	</ButtonSimultaneouslyPushSettings>
+
 	<ButtonOverlaySettings>
 
 		<!--ベースイメージ。-->
@@ -84,6 +105,9 @@
 		</ButtonOverlayImages>
 
 	</ButtonOverlaySettings>
+
+
+	
 
 	<!--方向キー入力時に表示するイメージ。-->
 	<POVDirectionImages>

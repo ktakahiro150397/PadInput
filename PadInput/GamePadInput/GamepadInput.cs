@@ -197,10 +197,29 @@ namespace PadInput.GamePadInput
 
             foreach(GamePadButtons button in Enum.GetValues(typeof(GamePadButtons)))
             {
+
                 if (CheckIsButtonPushed(joyInfo.dwButtons, button))
                 {
                     //このボタンは押下されている
-                    ret.Add(new GamePadSingleButtonData(button, settings));
+
+                    //同時押し設定のチェック
+                    if(settings.SimultaneouslySettings.Any(elem=> elem.ParentButton == button))
+                    {
+                        //同時押し設定あり
+                        var targetButtons = settings.SimultaneouslySettings.First(elem => elem.ParentButton == button);
+
+                        foreach(var childButton in targetButtons.ChildButtons)
+                        {
+                            ret.Add(new GamePadSingleButtonData(childButton, settings));
+                        }
+                    }
+                    else
+                    {
+                        //同時押し設定なし
+                        ret.Add(new GamePadSingleButtonData(button, settings));
+                    }
+
+
 ;                }
             }
 
@@ -214,6 +233,7 @@ namespace PadInput.GamePadInput
         /// <param name="button"></param>
         private bool CheckIsButtonPushed(int fieldValue,GamePadButtons button)
         {
+
             var checkValue = (GamePadButtons)fieldValue & button;
 
             return checkValue != 0;

@@ -10,6 +10,8 @@ public partial class PadInputSettings
 
     private PadInputSettingsInputDisplaySettings inputDisplaySettingsField;
 
+    private PadInputSettingsParentButton[] buttonSimultaneouslyPushSettingsField;
+
     private PadInputSettingsButtonOverlaySettings buttonOverlaySettingsField;
 
     private PadInputSettingsPOVDirectionImage[] pOVDirectionImagesField;
@@ -24,6 +26,20 @@ public partial class PadInputSettings
         set
         {
             this.inputDisplaySettingsField = value;
+        }
+    }
+
+    /// <remarks/>
+    [System.Xml.Serialization.XmlArrayItemAttribute("ParentButton", IsNullable = false)]
+    public PadInputSettingsParentButton[] ButtonSimultaneouslyPushSettings
+    {
+        get
+        {
+            return this.buttonSimultaneouslyPushSettingsField;
+        }
+        set
+        {
+            this.buttonSimultaneouslyPushSettingsField = value;
         }
     }
 
@@ -89,6 +105,46 @@ public partial class PadInputSettingsInputDisplaySettings
         set
         {
             this.backgroundColorField = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.SerializableAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+public partial class PadInputSettingsParentButton
+{
+
+    private string[] childButtonField;
+
+    private string buttonField;
+
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("ChildButton")]
+    public string[] ChildButton
+    {
+        get
+        {
+            return this.childButtonField;
+        }
+        set
+        {
+            this.childButtonField = value;
+        }
+    }
+
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public string button
+    {
+        get
+        {
+            return this.buttonField;
+        }
+        set
+        {
+            this.buttonField = value;
         }
     }
 }

@@ -50,5 +50,12 @@ namespace PadInput.GamePadSettings.Interface
         /// </summary>
         IGamePadInputDisplaySettings DisplaySettings { get; }
 
+        /// <summary>
+        /// 同時押し設定情報のリスト。
+        /// </summary>
+        IList<IGamePadSimultaneouslySettings> SimultaneouslySettings { get; }
+
+
+
     }
 }

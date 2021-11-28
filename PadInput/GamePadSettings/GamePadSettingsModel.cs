@@ -120,6 +120,7 @@ namespace PadInput.GamePadSettings
         private ImageSource baseImage;
         private IList<IGamePadButtonSetting> gamePadButtonSettings;
         private IList<IGamePadDirectionSetting> gamePadDirectionSettings;
+        private IList<IGamePadSimultaneouslySettings> gamePadSimultaneouslySettings;
         private IGamePadInputDisplaySettings displaySettings;
 
         public ImageSource BaseImage => baseImage;
@@ -129,6 +130,8 @@ namespace PadInput.GamePadSettings
         IList<IGamePadDirectionSetting> IGamePadSettingsModel.GetGamePadDirectionSettings => gamePadDirectionSettings;
 
         public IGamePadInputDisplaySettings DisplaySettings => displaySettings;
+
+        public IList<IGamePadSimultaneouslySettings> SimultaneouslySettings => gamePadSimultaneouslySettings;
 
         public IGamePadButtonSetting GetGamePadButtonSetting(GamePadButtons button)
         {
@@ -177,13 +180,48 @@ namespace PadInput.GamePadSettings
                     currentDir,
                     parseResult.ButtonOverlaySettings.BaseOverlayImage);
 
-
-
             //表示設定の取得
             displaySettings = new GamePadInputDisplaySettings(
                 parseResult.InputDisplaySettings.MaxDisplayCount,
                 parseResult.InputDisplaySettings.BackgroundColor
             );
+
+            //同時押しボタン設定の取得
+            this.gamePadSimultaneouslySettings = new List<IGamePadSimultaneouslySettings>();
+            foreach(var parentButton in parseResult.ButtonSimultaneouslyPushSettings)
+            {
+                GamePadButtons parentButtonParsed;
+                if (!Enum.TryParse(parentButton.button.ToString(), out parentButtonParsed) || !Enum.IsDefined(typeof(GamePadButtons), parentButtonParsed))
+                {
+                    //存在しないボタンIDが指定
+                    continue;
+                }
+                else
+                {
+                    IList<GamePadButtons> childButtons = new List<GamePadButtons>();
+
+                    //子ボタンの存在チェック
+                    foreach(var childButton in parentButton.ChildButton)
+                    {
+                        GamePadButtons childButtonElem;
+                        if (!Enum.TryParse(childButton.ToString(), out childButtonElem) || !Enum.IsDefined(typeof(GamePadButtons), childButtonElem))
+                        {
+                            //存在しないボタンIDが指定
+                            continue;
+                        }
+                        else
+                        {
+                            childButtons.Add(childButtonElem);
+                        }
+
+                    }
+
+                    SimultaneouslySettings.Add(new GamePadSimultaneouslySettings(parentButtonParsed, childButtons));
+
+                }
+
+            }
+
 
             //ボタン設定の追加
             this.gamePadButtonSettings = new List<IGamePadButtonSetting>();
