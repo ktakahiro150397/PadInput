@@ -3,8 +3,8 @@
 <PadInputSettings>
 
 	<InputDisplaySettings>
-		<MaxDisplayCount>15</MaxDisplayCount>
-		<BackgroundColor>Violet</BackgroundColor>
+		<MaxDisplayCount>25</MaxDisplayCount>
+		<BackgroundColor>#7137c8</BackgroundColor>
 	</InputDisplaySettings>
 
 	<!--ボタンの同時押し設定-->
@@ -31,7 +31,7 @@
 	<ButtonOverlaySettings>
 
 		<!--ベースイメージ。-->
-		<BaseOverlayImage>.\Settings\Pic\path2389.png</BaseOverlayImage>
+		<BaseOverlayImage>.\Settings\Pic\base3.png</BaseOverlayImage>
 		<!--<BaseOverlayImage>.\Settings\Pic\Base.png</BaseOverlayImage>-->
 
 		<!--表示する各ボタンのイメージとベースイメージに対する座標。-->
@@ -120,15 +120,15 @@
 		<POVDirectionImage direction="UpLeft">Settings\Pic\Direction_UpLeft.png</POVDirectionImage>
 		<POVDirectionImage direction="DownRight">Settings\Pic\Direction_DownRight.png</POVDirectionImage>
 		<POVDirectionImage direction="DownLeft">Settings\Pic\Direction_DownLeft.png</POVDirectionImage>-->
-		<POVDirectionImage direction="Neutral">Settings\Pic\Direction_N.png</POVDirectionImage>
-		<POVDirectionImage direction="Up">Settings\Pic\Log32Up.png</POVDirectionImage>
-		<POVDirectionImage direction="Down">Settings\Pic\Log32Down.png</POVDirectionImage>
-		<POVDirectionImage direction="Left">Settings\Pic\Log32Left.png</POVDirectionImage>
-		<POVDirectionImage direction="Right">Settings\Pic\Log32Right.png</POVDirectionImage>
-		<POVDirectionImage direction="UpRight">Settings\Pic\Log32UpRight.png</POVDirectionImage>
-		<POVDirectionImage direction="UpLeft">Settings\Pic\Log32UpLeft.png</POVDirectionImage>
-		<POVDirectionImage direction="DownRight">Settings\Pic\Log32DownRight.png</POVDirectionImage>
-		<POVDirectionImage direction="DownLeft">Settings\Pic\Log32DownLeft.png</POVDirectionImage>
+		<POVDirectionImage direction="Neutral">Settings\Pic\Neutral.png</POVDirectionImage>
+		<POVDirectionImage direction="Up">Settings\Pic\ue.png</POVDirectionImage>
+		<POVDirectionImage direction="Down">Settings\Pic\shita.png</POVDirectionImage>
+		<POVDirectionImage direction="Left">Settings\Pic\hidari.png</POVDirectionImage>
+		<POVDirectionImage direction="Right">Settings\Pic\migi.png</POVDirectionImage>
+		<POVDirectionImage direction="UpRight">Settings\Pic\migiue.png</POVDirectionImage>
+		<POVDirectionImage direction="UpLeft">Settings\Pic\hidariue.png</POVDirectionImage>
+		<POVDirectionImage direction="DownRight">Settings\Pic\migishita.png</POVDirectionImage>
+		<POVDirectionImage direction="DownLeft">Settings\Pic\hidarishita.png</POVDirectionImage>
 	</POVDirectionImages>
 
 </PadInputSettings>

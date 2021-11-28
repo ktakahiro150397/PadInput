@@ -65,6 +65,7 @@
                         <TextBlock Text="{Binding ElapsedFrameCount}" 
                                    Grid.Column="2"
                                    FontSize="26"
+                                   Foreground="White"
                                    Margin="15,0,0,0"
                                    >
                         </TextBlock>
