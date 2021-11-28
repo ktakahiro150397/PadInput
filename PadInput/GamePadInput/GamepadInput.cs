@@ -128,7 +128,7 @@ namespace PadInput.GamePadInput
             if (joyInfo.dwXpos == POVInputValues.POV_NEUTRAL_VALUE
                 && joyInfo.dwYpos == POVInputValues.POV_NEUTRAL_VALUE)
             {
-                return new GamePadDirectionData(GamePadPOVDirection.Neutral);
+                return new GamePadDirectionData(GamePadPOVDirection.Neutral, settings);
             }
 
             //上方向入力の確認
@@ -136,18 +136,18 @@ namespace PadInput.GamePadInput
             {
                 if (joyInfo.dwXpos == POVInputValues.POV_NEUTRAL_VALUE)
                 {
-                    return new GamePadDirectionData(GamePadPOVDirection.Up);
+                    return new GamePadDirectionData(GamePadPOVDirection.Up, settings);
 
                 }
                 else if (joyInfo.dwXpos == POVInputValues.POV_ZERO_VALUE)
                 {
 
-                    return new GamePadDirectionData(GamePadPOVDirection.UpLeft);
+                    return new GamePadDirectionData(GamePadPOVDirection.UpLeft, settings);
 
                 }
                 else if (joyInfo.dwXpos == POVInputValues.POV_MAX_VALUE)
                 {
-                    return new GamePadDirectionData(GamePadPOVDirection.UpRight);
+                    return new GamePadDirectionData(GamePadPOVDirection.UpRight, settings);
                 }
             }
 
@@ -156,18 +156,18 @@ namespace PadInput.GamePadInput
             {
                 if (joyInfo.dwXpos == POVInputValues.POV_NEUTRAL_VALUE)
                 {
-                    return new GamePadDirectionData(GamePadPOVDirection.Down);
+                    return new GamePadDirectionData(GamePadPOVDirection.Down, settings);
 
                 }
                 else if (joyInfo.dwXpos == POVInputValues.POV_ZERO_VALUE)
                 {
 
-                    return new GamePadDirectionData(GamePadPOVDirection.DownLeft);
+                    return new GamePadDirectionData(GamePadPOVDirection.DownLeft, settings);
 
                 }
                 else if (joyInfo.dwXpos == POVInputValues.POV_MAX_VALUE)
                 {
-                    return new GamePadDirectionData(GamePadPOVDirection.DownRight);
+                    return new GamePadDirectionData(GamePadPOVDirection.DownRight, settings);
                 }
             }
 
@@ -176,11 +176,11 @@ namespace PadInput.GamePadInput
             {
                 if (joyInfo.dwXpos == POVInputValues.POV_ZERO_VALUE)
                 {
-                    return new GamePadDirectionData(GamePadPOVDirection.Left);
+                    return new GamePadDirectionData(GamePadPOVDirection.Left, settings);
                 }
                 else if (joyInfo.dwXpos == POVInputValues.POV_MAX_VALUE)
                 {
-                    return new GamePadDirectionData(GamePadPOVDirection.Right);
+                    return new GamePadDirectionData(GamePadPOVDirection.Right, settings);
                 }
             }
 

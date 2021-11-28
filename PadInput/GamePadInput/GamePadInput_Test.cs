@@ -1,5 +1,6 @@
 ﻿using PadInput.GamePadInputDisplay;
 using PadInput.GamePadInputDisplay.Interface;
+using PadInput.GamePadSettings.Interface;
 using PadInput.Win32Api;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ namespace PadInput.GamePadInput
     class GamePadInput_Test : IGamePadInput
     {
 
-        public GamePadInput_Test()
+        public GamePadInput_Test(IGamePadSettingsModel settings)
         {
             joyInfo = new JOYINFOEX();
             joyInfo.dwSize = Marshal.SizeOf(joyInfo);
@@ -21,9 +22,14 @@ namespace PadInput.GamePadInput
             joyInfo.dwYpos = POVInputValues.POV_NEUTRAL_VALUE;
 
             joyInfo.dwButtons = 10;//2+8(ボタン1と3が押下状態)
+
+            this.settings = settings;
+
         }
 
         private JOYINFOEX joyInfo;
+
+        private IGamePadSettingsModel settings;
 
         public bool IsInputChangeFromPreviousFrame
         {
@@ -71,70 +77,70 @@ namespace PadInput.GamePadInput
     public IGamePadDirectionData GetPOVDirectionFromCurrentState()
     {
 
-        if (joyInfo.dwXpos == POVInputValues.POV_NEUTRAL_VALUE
-            && joyInfo.dwYpos == POVInputValues.POV_NEUTRAL_VALUE)
-        {
-            return new GamePadDirectionData(GamePadPOVDirection.Neutral);
+            if (joyInfo.dwXpos == POVInputValues.POV_NEUTRAL_VALUE
+                    && joyInfo.dwYpos == POVInputValues.POV_NEUTRAL_VALUE)
+            {
+                return new GamePadDirectionData(GamePadPOVDirection.Neutral, settings);
+            }
+
+            //上方向入力の確認
+            if (joyInfo.dwYpos == POVInputValues.POV_ZERO_VALUE)
+            {
+                if (joyInfo.dwXpos == POVInputValues.POV_NEUTRAL_VALUE)
+                {
+                    return new GamePadDirectionData(GamePadPOVDirection.Up, settings);
+
+                }
+                else if (joyInfo.dwXpos == POVInputValues.POV_ZERO_VALUE)
+                {
+
+                    return new GamePadDirectionData(GamePadPOVDirection.UpLeft, settings);
+
+                }
+                else if (joyInfo.dwXpos == POVInputValues.POV_MAX_VALUE)
+                {
+                    return new GamePadDirectionData(GamePadPOVDirection.UpRight, settings);
+                }
+            }
+
+            //下方向入力の確認
+            if (joyInfo.dwYpos == POVInputValues.POV_MAX_VALUE)
+            {
+                if (joyInfo.dwXpos == POVInputValues.POV_NEUTRAL_VALUE)
+                {
+                    return new GamePadDirectionData(GamePadPOVDirection.Down, settings);
+
+                }
+                else if (joyInfo.dwXpos == POVInputValues.POV_ZERO_VALUE)
+                {
+
+                    return new GamePadDirectionData(GamePadPOVDirection.DownLeft, settings);
+
+                }
+                else if (joyInfo.dwXpos == POVInputValues.POV_MAX_VALUE)
+                {
+                    return new GamePadDirectionData(GamePadPOVDirection.DownRight, settings);
+                }
+            }
+
+            //左右入力の確認
+            if (joyInfo.dwYpos == POVInputValues.POV_NEUTRAL_VALUE)
+            {
+                if (joyInfo.dwXpos == POVInputValues.POV_ZERO_VALUE)
+                {
+                    return new GamePadDirectionData(GamePadPOVDirection.Left, settings);
+                }
+                else if (joyInfo.dwXpos == POVInputValues.POV_MAX_VALUE)
+                {
+                    return new GamePadDirectionData(GamePadPOVDirection.Right, settings);
+                }
+            }
+
+            //該当なしの場合例外
+            throw new ApplicationException($"方向キー入力が検知できませんでした。" + Environment.NewLine +
+                $"入力値 dwXpos : {joyInfo.dwXpos} / dwXpos : {joyInfo.dwYpos} ");
+
         }
-
-        //上方向入力の確認
-        if (joyInfo.dwYpos == POVInputValues.POV_ZERO_VALUE)
-        {
-            if (joyInfo.dwXpos == POVInputValues.POV_NEUTRAL_VALUE)
-            {
-                return new GamePadDirectionData(GamePadPOVDirection.Up);
-
-            }
-            else if (joyInfo.dwXpos == POVInputValues.POV_ZERO_VALUE)
-            {
-
-                return new GamePadDirectionData(GamePadPOVDirection.UpLeft);
-
-            }
-            else if (joyInfo.dwXpos == POVInputValues.POV_MAX_VALUE)
-            {
-                return new GamePadDirectionData(GamePadPOVDirection.UpRight);
-            }
-        }
-
-        //下方向入力の確認
-        if (joyInfo.dwYpos == POVInputValues.POV_MAX_VALUE)
-        {
-            if (joyInfo.dwXpos == POVInputValues.POV_NEUTRAL_VALUE)
-            {
-                return new GamePadDirectionData(GamePadPOVDirection.Down);
-
-            }
-            else if (joyInfo.dwXpos == POVInputValues.POV_ZERO_VALUE)
-            {
-
-                return new GamePadDirectionData(GamePadPOVDirection.DownLeft);
-
-            }
-            else if (joyInfo.dwXpos == POVInputValues.POV_MAX_VALUE)
-            {
-                return new GamePadDirectionData(GamePadPOVDirection.DownRight);
-            }
-        }
-
-        //左右入力の確認
-        if (joyInfo.dwYpos == POVInputValues.POV_NEUTRAL_VALUE)
-        {
-            if (joyInfo.dwXpos == POVInputValues.POV_ZERO_VALUE)
-            {
-                return new GamePadDirectionData(GamePadPOVDirection.Left);
-            }
-            else if (joyInfo.dwXpos == POVInputValues.POV_MAX_VALUE)
-            {
-                return new GamePadDirectionData(GamePadPOVDirection.Right);
-            }
-        }
-
-        //該当なしの場合例外
-        throw new ApplicationException($"方向キー入力が検知できませんでした。" + Environment.NewLine +
-            $"入力値 dwXpos : {joyInfo.dwXpos} / dwXpos : {joyInfo.dwYpos} ");
-
-    }
 
 
     public IList<IGamePadSingleButtonData> GetPushedButtonsFromCurrentState()

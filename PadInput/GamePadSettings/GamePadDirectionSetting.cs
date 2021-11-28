@@ -23,7 +23,7 @@ namespace PadInput.GamePadSettings
             Direction = direction;
             DirectionImages = directionImage;
 
-            if(DirectionImages.CanFreeze && DirectionImages.IsFrozen == false)
+            if(DirectionImages != null && DirectionImages.CanFreeze && DirectionImages.IsFrozen == false)
             {
                 DirectionImages.Freeze();
             }
@@ -31,9 +31,6 @@ namespace PadInput.GamePadSettings
 
         public GamePadDirectionSetting(GamePadPOVDirection direction,IGamePadSettingsModel settings)
         {
-            this.GamePadDirect
-
-
             Direction = direction;
             DirectionImages = settings.GetGamePadDirectionSetting(direction).DirectionImages;
         }

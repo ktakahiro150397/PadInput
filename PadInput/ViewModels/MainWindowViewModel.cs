@@ -20,7 +20,8 @@ namespace PadInput.ViewModels
         public MainWindowViewModel()
         {
 
-            settings = new GamePadSettingsModel();
+            var xmlFilePath = "./Settings/PadInputSettings.xml";
+            settings = new GamePadSettingsModel(xmlFilePath);
 
             //テスト用モッククラス
             //gamePadInput = new GamePadInput_Test();
