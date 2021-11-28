@@ -67,6 +67,14 @@ namespace PadInput.ViewModels
                 return settings.BaseImage;
             }
         }
+        public IGamePadInputDisplaySettings DisplaySettings
+        {
+            get
+            {
+                return settings.DisplaySettings;
+            }
+        }
+
 
         #region "通知プロパティ"
 
@@ -185,7 +193,7 @@ namespace PadInput.ViewModels
             if (gamePadInput.IsInputChangeFromPreviousFrame)
             {
                 //前フレームと入力が異なる場合に表示
-                var copy = new List<IGamePadDisplayInfo>(displayInfo).Take(10).ToList();
+                var copy = new List<IGamePadDisplayInfo>(displayInfo).Take(settings.DisplaySettings.MaxDisplayCount).ToList();
 
                 var add = new GamePadDisplayInfo(
                     gamePadInput.GetPushedButtonsFromCurrentState(),

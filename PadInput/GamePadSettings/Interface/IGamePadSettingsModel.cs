@@ -44,5 +44,11 @@ namespace PadInput.GamePadSettings.Interface
         /// <returns></returns>
         IGamePadDirectionSetting GetGamePadDirectionSetting(GamePadPOVDirection direction);
 
+
+        /// <summary>
+        /// キー入力履歴表示に関する設定を取得します。
+        /// </summary>
+        IGamePadInputDisplaySettings DisplaySettings { get; }
+
     }
 }

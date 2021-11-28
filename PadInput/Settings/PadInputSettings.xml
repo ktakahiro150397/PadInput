@@ -2,15 +2,21 @@
 
 <PadInputSettings>
 
+	<InputDisplaySettings>
+		<MaxDisplayCount>15</MaxDisplayCount>
+		<BackgroundColor>Violet</BackgroundColor>
+	</InputDisplaySettings>
+
 	<ButtonOverlaySettings>
 
 		<!--ベースイメージ。-->
-		<BaseOverlayImage>.\Settings\Pic\Base.png</BaseOverlayImage>
+		<BaseOverlayImage>.\Settings\Pic\path2389.png</BaseOverlayImage>
+		<!--<BaseOverlayImage>.\Settings\Pic\Base.png</BaseOverlayImage>-->
 
 		<!--表示する各ボタンのイメージとベースイメージに対する座標。-->
 		<ButtonOverlayImages>
 
-			<OverlayImage button="PAD_BUTTON_1">
+			<!--<OverlayImage button="PAD_BUTTON_1">
 				<ImageName>Settings\Pic\D_Press.png</ImageName>
 				<OverlayImagePosition>
 					<x>0</x>
@@ -40,7 +46,40 @@
 					<x>0</x>
 					<y>96</y>
 				</OverlayImagePosition>
+			</OverlayImage>-->
+
+			<OverlayImage button="PAD_BUTTON_1">
+				<ImageName>Settings\Pic\32batu.png</ImageName>
+				<OverlayImagePosition>
+					<x>0</x>
+					<y>0</y>
+				</OverlayImagePosition>
 			</OverlayImage>
+
+			<OverlayImage button="PAD_BUTTON_0">
+				<ImageName>Settings\Pic\32shikacu.png</ImageName>
+				<OverlayImagePosition>
+					<x>0</x>
+					<y>32</y>
+				</OverlayImagePosition>
+			</OverlayImage>
+
+			<OverlayImage button="PAD_BUTTON_3">
+				<ImageName>Settings\Pic\32sankacu.png</ImageName>
+				<OverlayImagePosition>
+					<x>0</x>
+					<y>64</y>
+				</OverlayImagePosition>
+			</OverlayImage>
+
+			<OverlayImage button="PAD_BUTTON_2">
+				<ImageName>Settings\Pic\32maru.png</ImageName>
+				<OverlayImagePosition>
+					<x>0</x>
+					<y>96</y>
+				</OverlayImagePosition>
+			</OverlayImage>
+
 
 		</ButtonOverlayImages>
 

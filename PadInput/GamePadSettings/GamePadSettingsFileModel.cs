@@ -8,9 +8,24 @@
 public partial class PadInputSettings
 {
 
+    private PadInputSettingsInputDisplaySettings inputDisplaySettingsField;
+
     private PadInputSettingsButtonOverlaySettings buttonOverlaySettingsField;
 
     private PadInputSettingsPOVDirectionImage[] pOVDirectionImagesField;
+
+    /// <remarks/>
+    public PadInputSettingsInputDisplaySettings InputDisplaySettings
+    {
+        get
+        {
+            return this.inputDisplaySettingsField;
+        }
+        set
+        {
+            this.inputDisplaySettingsField = value;
+        }
+    }
 
     /// <remarks/>
     public PadInputSettingsButtonOverlaySettings ButtonOverlaySettings
@@ -36,6 +51,44 @@ public partial class PadInputSettings
         set
         {
             this.pOVDirectionImagesField = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.SerializableAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+public partial class PadInputSettingsInputDisplaySettings
+{
+
+    private int maxDisplayCountField;
+
+    private string backgroundColorField;
+
+    /// <remarks/>
+    public int MaxDisplayCount
+    {
+        get
+        {
+            return this.maxDisplayCountField;
+        }
+        set
+        {
+            this.maxDisplayCountField = value;
+        }
+    }
+
+    /// <remarks/>
+    public string BackgroundColor
+    {
+        get
+        {
+            return this.backgroundColorField;
+        }
+        set
+        {
+            this.backgroundColorField = value;
         }
     }
 }

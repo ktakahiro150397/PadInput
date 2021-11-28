@@ -120,12 +120,15 @@ namespace PadInput.GamePadSettings
         private ImageSource baseImage;
         private IList<IGamePadButtonSetting> gamePadButtonSettings;
         private IList<IGamePadDirectionSetting> gamePadDirectionSettings;
+        private IGamePadInputDisplaySettings displaySettings;
 
         public ImageSource BaseImage => baseImage;
 
         IList<IGamePadButtonSetting> IGamePadSettingsModel.GetGamePadButtonSettings => gamePadButtonSettings;
 
         IList<IGamePadDirectionSetting> IGamePadSettingsModel.GetGamePadDirectionSettings => gamePadDirectionSettings;
+
+        public IGamePadInputDisplaySettings DisplaySettings => displaySettings;
 
         public IGamePadButtonSetting GetGamePadButtonSetting(GamePadButtons button)
         {
@@ -173,6 +176,14 @@ namespace PadInput.GamePadSettings
             baseImage = GetImageSourceFromCurrentDirectory(
                     currentDir,
                     parseResult.ButtonOverlaySettings.BaseOverlayImage);
+
+
+
+            //表示設定の取得
+            displaySettings = new GamePadInputDisplaySettings(
+                parseResult.InputDisplaySettings.MaxDisplayCount,
+                parseResult.InputDisplaySettings.BackgroundColor
+            );
 
             //ボタン設定の追加
             this.gamePadButtonSettings = new List<IGamePadButtonSetting>();

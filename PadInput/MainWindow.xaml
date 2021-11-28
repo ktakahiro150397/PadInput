@@ -28,7 +28,7 @@
                       Grid.RowSpan="3"
                       ItemsSource="{Binding GamePadDisplayInfos}"
                       Margin="0,20,0,0"
-                      Background="Violet"
+                      Background="{Binding DisplaySettings.BackgroundColor}"
                       >
             
             <ItemsControl.ItemTemplate>
@@ -70,7 +70,6 @@
                                Grid.Column="0"
                                Width="32px"
                                Height="32px"
-                               
                                ></Image>
 
                         <Image Source="{Binding 
@@ -80,7 +79,8 @@
                                Grid.Column="1"
                                Panel.ZIndex="0"
                                HorizontalAlignment="Left"
-                               Stretch="None">
+                               Width="128"
+                               Height="32">
                         </Image>
 
                         <!--オーバーレイ画像のバインド-->
@@ -105,7 +105,9 @@
                                 <DataTemplate>
                                     <Image Source="{Binding ButtonSetting.OverlayImage}" 
                                            Visibility="Visible"
-                                           StretchDirection="DownOnly">
+                                           Width="32"
+                                           Height="32"
+                                           >
                                     </Image>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
